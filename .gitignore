@@ -1,0 +1,6 @@
+# Deployment files
+/ezMagicalKeyboard*.exe
+
+# Generated content
+/.config
+/data/*.csv
