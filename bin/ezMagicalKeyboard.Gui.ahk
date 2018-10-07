@@ -70,9 +70,13 @@ ConfirmServerConfig:
 
   sServer := tServer
   sPort := tPort
+  sType := tType
+  sId := tId
 
   NewConfig := { "LAST_SERVER": sServer
-               , "LAST_PORT":   sPort }
+               , "LAST_PORT":   sPort
+               , "CLIENT_TYPE": sType
+               , "CLIENT_ID":   sId }
   ModifyConfig(NewConfig)
   SaveConfig()
 
@@ -271,7 +275,7 @@ class ActionSocket extends SocketTCP
           gSocket.sendText("!ENOTALLOWED")
         }
       }
-      Else If RegExMatch(Command, "^(ST|EN|LK|UL|EX|RS|PING|PONG|WHO|VERIFIED)$"){
+      Else If RegExMatch(Command, "^(ST|EN|LK|UL|EX|RS|PING|PONG|WHO|VERIFIED|REGISTERED)$"){
         CommandType := Command
         RT := ""
       }
@@ -313,7 +317,16 @@ class ActionSocket extends SocketTCP
       }
       Else If (Command == "WHO")
       {
-        gSocket.sendText("TP MKB")
+        TypeString := "TP " . sType
+        gSocket.sendText(TypeString)
+      }
+      Else If (Command == "VERIFIED")
+      {
+        If (sId != "")
+        {
+          IdString := "ID " . sId
+          gSocket.sendText(IdString)
+        }
       }
 
       Gui, Main:Default

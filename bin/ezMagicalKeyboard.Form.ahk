@@ -1,5 +1,5 @@
 global LogListIconSrc := ["Default", "ST", "EN", "KEYIN", "KEYOUT", "RUN", "LK", "UL", "EX", "ER", "PING", "WHO", "RS", "VERIFIED", "ERROR"]
-global IconIndex := {"ST": 2, "EN": 3, "KEYIN": 4, "KEYOUT": 5, "RUN": 6, "LK": 7, "UL": 8, "EX": 9, "ER": 10, "PING": 11, "WHO": 12, "RS": 13, "VERIFIED": 14, "ERROR": 15}
+global IconIndex := {"ST": 2, "EN": 3, "KEYIN": 4, "KEYOUT": 5, "RUN": 6, "LK": 7, "UL": 8, "EX": 9, "ER": 10, "PING": 11, "WHO": 12, "RS": 13, "VERIFIED": 14, "REGISTERED": 14, "ERROR": 15}
 
 Menu, Tray, Icon, ..\assets\Icon.ico
 
@@ -56,7 +56,7 @@ LV_ModifyCol(3, "170")
 
 Gui, Config: New, -MaximizeBox -MinimizeBox +MinSize546x, ezMagicalKeyboard
 Gui, Font, s8, Segoe UI
-Gui, Add, Tab3    , vConfigGenetal, General
+Gui, Add, Tab3    , vConfigGenetal, General|Integration
 Gui, Add, Text    , xp+15  yp+30 , You can set your server information in this page, to confirm if the `nserver is available, click Test Connection.
 Gui, Add, GroupBox, xp     yp+45 w410 h130, Server Information:
 Gui, Add, Text    , xp+10  yp+30, Server &address:
@@ -64,6 +64,13 @@ Gui, Add, Text    , xp     yp+27, Server &port:
 Gui, Add, Edit    , xp+150 yp-33 w220 vtServer, %sServer%
 Gui, Add, Edit    , xp     yp+27 w220 vtPort  , %sPort%
 Gui, Add, Button  , xp+110 yp+40 w120 gTestConnection vTestButton, &Test Connection
+Gui, Tab, 2
+Gui, Add, Text    , xp-270 yp-136, You can set how the client integrate into ezTrigger system. Please try to avoid `nmodifying the contents of this tab, otherwise you may not be able to connect`nto the ezTrigger server properly.
+Gui, Add, GroupBox, xp     yp+60  w410 h125, ezTrigger Integration:
+Gui, Add, Text    , xp+10  yp+30, Client &type:
+Gui, Add, Text    , xp     yp+27, Client &id:
+Gui, Add, Edit    , xp+150 yp-33 w220 vtType, %sType%
+Gui, Add, Edit    , xp     yp+27 w220 vtId  , %sId%
 Gui, Tab
 Gui, Add, Button  , x300     w70 gConfirmServerConfig, OK
 Gui, Add, Button  , xp+80 yp w70 gCancelServerConfig, Cancel
